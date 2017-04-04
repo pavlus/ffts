@@ -10,3 +10,10 @@ addons:
       - kubuntu-backports
 script:
   - mkdir build && cd build && cmake .. && cmake --build .
+#deploy:
+#  provider: releases
+#  api_key: "GITHUB OAUTH TOKEN"
+#  file: "FILE TO UPLOAD"
+#  skip_cleanup: true
+#  on:
+#    tags: true
