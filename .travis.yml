@@ -27,7 +27,7 @@ before_script:
   - export NDK_ROOT=$HOME/android-ndk-root
 script:
   - mkdir build && cd build && cmake .. && cmake --build .
-  - $TRAVIS_BUILD_DIR/$BUILD_SCRIPT
+  - cd "$TRAVIS_BUILD_DIR" && "$TRAVIS_BUILD_DIR/$BUILD_SCRIPT"
 #deploy:
 #  provider: releases
 #  api_key: "GITHUB OAUTH TOKEN"
