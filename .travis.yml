@@ -10,6 +10,8 @@ addons:
       - kubuntu-backports
 script:
   - mkdir build && cd build && cmake .. && cmake --build .
+  - ./build_android.sh
+  - ./build_iphone.sh
 #deploy:
 #  provider: releases
 #  api_key: "GITHUB OAUTH TOKEN"
