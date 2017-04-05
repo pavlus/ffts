@@ -1,4 +1,15 @@
-language: c
+language: android
+notifications:
+  email: false
+android:
+  components:
+    # some magic to get around build tools 25 license <--> travis buggy interaction, don't change order
+    - tools
+    # The BuildTools version used by your project
+    - build-tools-25.0.2
+    - android-25
+    - extra
+    - platform-tools
 addons:
   apt:
     packages:
