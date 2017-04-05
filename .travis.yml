@@ -12,8 +12,7 @@ matrix:
         - os: osx
           env: BUILD_SCRIPT=build_iphone.sh
 before_script:
-  - if [ -n "$NDK_VERSION" ]; then curl -L http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.bin -O && chmod u+x android-ndk-${NDK_VERSION}-linux-x86_64.bin && ./android-ndk-${NDK_VERSION}-linux-x86_64.bin > /dev/null && export NDK_ROOT=`pwd`/android-ndk-${NDK_VERSION} && export PATH=${NDK_ROOT}:${PATH}
-  - rm android-ndk-${NDK_VERSION}-linux-x86_64.bin
+  - if [ -n "$NDK_VERSION" ]; then git clone https://github.com/urho3d/android-ndk.git $HOME/android-ndk-root && export NDK_ROOT=$HOME/android-ndk-root
 script:
   - mkdir build && cd build && cmake .. && cmake --build .
   - $TRAVIS_BUILD_DIR/$BUILD_SCRIPT
