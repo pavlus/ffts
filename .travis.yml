@@ -8,11 +8,11 @@ addons:
 matrix:
     include:
         - os: linux
-          env:  NDK_VERSION=r10e BUILD_SCRIPT=build_android.sh 
+          env:  BUILD_SCRIPT=build_android.sh 
         - os: osx
           env: BUILD_SCRIPT=build_iphone.sh
 before_script:
-  - if [ -n "$NDK_VERSION" ]; then git clone https://github.com/urho3d/android-ndk.git $HOME/android-ndk-root
+  - git clone https://github.com/urho3d/android-ndk.git $HOME/android-ndk-root
   - export NDK_ROOT=$HOME/android-ndk-root
 script:
   - mkdir build && cd build && cmake .. && cmake --build .
