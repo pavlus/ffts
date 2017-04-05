@@ -8,6 +8,8 @@ addons:
       - cmake
     sources:
       - kubuntu-backports
+before-script:
+  - cd $TRAVIS_BUILD_DIR
 script:
   - mkdir build && cd build && cmake .. && cmake --build .
   - ./build_android.sh
