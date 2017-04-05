@@ -1,17 +1,22 @@
 language: c
-os:
-  - linux
-  - osx
 addons:
   apt:
     packages:
       - cmake
     sources:
       - kubuntu-backports
+matrix:
+    include:
+        - os: linux
+          env:  NDK_VERSION=r10e BUILD_SCRIPT=build_android.sh 
+        - os: osx
+          env: BUILD_SCRIPT=build_iphone.sh
+before_script:
+  - if [ -n "$NDK_VERSION" ]; then curl -L http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.bin -O && chmod u+x android-ndk-${NDK_VERSION}-linux-x86_64.bin && ./android-ndk-${NDK_VERSION}-linux-x86_64.bin > /dev/null && export NDK_ROOT=`pwd`/android-ndk-${NDK_VERSION} && export PATH=${NDK_ROOT}:${PATH}
+  - rm android-ndk-${NDK_VERSION}-linux-x86_64.bin
 script:
   - mkdir build && cd build && cmake .. && cmake --build .
-  - $TRAVIS_BUILD_DIR/build_android.sh
-  - $TRAVIS_BUILD_DIR/build_iphone.sh
+  - $TRAVIS_BUILD_DIR/$BUILD_SCRIPT
 #deploy:
 #  provider: releases
 #  api_key: "GITHUB OAUTH TOKEN"
