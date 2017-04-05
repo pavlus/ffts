@@ -8,12 +8,10 @@ addons:
       - cmake
     sources:
       - kubuntu-backports
-before-script:
-  - cd $TRAVIS_BUILD_DIR
 script:
   - mkdir build && cd build && cmake .. && cmake --build .
-  - ./build_android.sh
-  - ./build_iphone.sh
+  - $TRAVIS_BUILD_DIR/build_android.sh
+  - $TRAVIS_BUILD_DIR/build_iphone.sh
 #deploy:
 #  provider: releases
 #  api_key: "GITHUB OAUTH TOKEN"
